@@ -281,7 +281,9 @@ function App() {
                    <div className="flex items-center gap-3">
                       <div className="font-semibold text-slate-800 flex flex-col">
                          <span>{chats.find(c => c.id === currentChatId)?.title || "บทสนทนาใหม่"}</span>
-                         <span className="text-[10px] text-green-600 font-mono flex items-center gap-1 font-bold">● ONLINE <span className="text-slate-400 font-normal">| Gemini 2.0 Flash</span></span>
+                         <span className="text-[10px] text-green-600 font-mono flex items-center gap-1 font-bold">
+                           ● ONLINE <span className="text-slate-400 font-normal">| Gemini 1.5 Pro</span>
+                        </span>
                       </div>
                    </div>
                 </div>
