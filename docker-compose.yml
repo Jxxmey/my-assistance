@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # --- ส่วนของ Backend ---
+  backend:
+    build: ./backend
+    container_name: ai_backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env  # อ่าน API Key จากไฟล์ .env ของเรา
+    volumes:
+      - ./backend:/app  # ✨ Sync โค้ด: แก้โค้ดในเครื่อง Docker แก้ตามทันที (Hot Reload)
+    restart: always
+
+  # --- ส่วนของ Frontend ---
+  frontend:
+    build: ./frontend
+    container_name: ai_frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app # ✨ Sync โค้ด frontend
+      - /app/node_modules # ⚠️ สำคัญ: อย่าให้ Docker ทับ node_modules ด้วยของในเครื่อง
+    depends_on:
+      - backend # ให้รัน backend ก่อน
+    environment:
+      - VITE_API_URL=http://localhost:8000 # บอก frontend ว่า backend อยู่ที่ไหน
+    restart: always

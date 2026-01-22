@@ -1,0 +1,50 @@
+# --- 🔐 SECRETS & KEYS (ห้ามหลุดเด็ดขาด) ---
+.env
+.env.*
+.venv
+env/
+venv/
+ENV/
+
+# Google Cloud Service Accounts
+service-account.json
+service-account-key.json
+backend/service-account.json
+backend/service-account-key.json
+**/*service-account*.json
+*.pem
+*.key
+
+# --- 🐍 Python (Backend) ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.spec
+backend/dist/
+backend/build/
+
+# --- ⚛️ Node.js (Frontend) ---
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+build/
+frontend/build/
+.npm/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- 🖥️ System & IDE ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- 📂 Temporary Files ---
+*.csv
+*.xlsx
+*.pdf
+temp/
+uploads/

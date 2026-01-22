@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Kanit', sans-serif;
+  /* 🟣 พื้นหลัง Gradient โทนม่วงสว่าง */
+  background: linear-gradient(135deg, #fdf4ff 0%, #e9d5ff 50%, #d8b4fe 100%);
+  background-attachment: fixed;
+  color: #334155; /* สีข้อความเทาเข้ม (Slate-700) เพื่อให้อ่านง่ายบนพื้นสว่าง */
+  overflow: hidden;
+}
+
+/* --- Glassmorphism (Light Mode) --- */
+.glass {
+  /* กระจกสีขาวโปร่งแสง */
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px 0 rgba(107, 33, 168, 0.1); /* เงาสีม่วงจางๆ */
+}
+
+.glass-card {
+  @apply glass rounded-2xl transition-all duration-300 hover:bg-white/80 hover:scale-[1.02] cursor-pointer hover:shadow-xl hover:shadow-purple-500/10;
+}
+
+.glass-input {
+  @apply bg-white/50 border border-purple-100 rounded-xl px-4 py-3 text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:bg-white transition-all;
+}
+
+/* Custom Scrollbar (สีม่วง) */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #c084fc; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #a855f7; }
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+
+.fade-in { animation: fadeIn 0.5s ease-out forwards; opacity: 0; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
