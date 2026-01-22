@@ -1,0 +1,40 @@
+services:
+  # ----------------------------------------
+  # 1. Backend (Python Docker)
+  # ----------------------------------------
+  - type: web
+    name: my-ai-backend
+    runtime: docker
+    root: backend
+    plan: free
+    region: singapore # หรือเลือกตามสะดวก
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: GENAI_API_KEY
+        sync: false # (Render จะถามให้กรอกตอนกด Deploy)
+      - key: GOOGLE_CREDENTIALS_BASE64
+        sync: false # (Render จะถามให้กรอกตอนกด Deploy)
+      - key: FRONTEND_URL
+        fromService:
+            type: static
+            name: my-ai-frontend
+            property: url
+
+  # ----------------------------------------
+  # 2. Frontend (Static Site - ฟรีและเร็วกว่า Docker)
+  # ----------------------------------------
+  - type: static
+    name: my-ai-frontend
+    root: frontend
+    buildCommand: npm install && npm run build
+    publishDir: dist
+    plan: free
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+            type: web
+            name: my-ai-backend
+            property: url
